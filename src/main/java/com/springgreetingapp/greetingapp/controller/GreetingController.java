@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.springgreetingapp.greetingapp.service.GreetingService;
 import com.springgreetingapp.greetingapp.model.Greeting;
-
+import java.util.*;
 @RestController
 @RequestMapping("/greetings")
 public class GreetingController {
@@ -56,5 +56,11 @@ public class GreetingController {
     @PostMapping("/save")
     public Greeting saveGreeting(@RequestBody Greeting greeting) {
         return greetingService.saveGreeting(greeting);
+    }
+
+    //Work for UC5
+    @GetMapping("/{id}")
+    public Optional<Greeting> getGreetingById(@PathVariable Long id) {
+        return greetingService.getGreetingById(id);
     }
 }
