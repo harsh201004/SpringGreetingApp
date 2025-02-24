@@ -3,6 +3,7 @@ package com.springgreetingapp.greetingapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.springgreetingapp.greetingapp.service.GreetingService;
+import com.springgreetingapp.greetingapp.model.Greeting;
 
 @RestController
 @RequestMapping("/greetings")
@@ -49,5 +50,11 @@ public class GreetingController {
     public String getPersonalizedGreeting(@RequestParam(required = false) String firstName,
                                           @RequestParam(required = false) String lastName) {
         return "{\"message\": \"" + greetingService.getPersonalizedGreeting(firstName, lastName) + "\"}";
+    }
+
+    //Work for UC4
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestBody Greeting greeting) {
+        return greetingService.saveGreeting(greeting);
     }
 }
