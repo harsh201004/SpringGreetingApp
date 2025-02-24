@@ -1,11 +1,14 @@
 package com.springgreetingapp.greetingapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.springgreetingapp.greetingapp.service.GreetingService;
 
 @RestController
 @RequestMapping("/greetings")
-
 public class GreetingController {
+
+    //Work for UC1
 
     // GET request - returns a greeting message
     @GetMapping("/hello")
@@ -31,4 +34,13 @@ public class GreetingController {
         return "{\"message\": \"Greeting deleted successfully!\"}";
     }
 
+    //Work for UC2
+
+    @Autowired
+    private GreetingService greetingService;
+
+    @GetMapping("/message")
+    public String getGreeting1() {
+        return "{\"message\": \"" + greetingService.getGreetingMessage() + "\"}";
+    }
 }
